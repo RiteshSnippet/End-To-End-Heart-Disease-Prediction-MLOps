@@ -219,3 +219,7 @@ __marimo__/
 
 # Data
 notebooks/Data/heart.csv
+
+# Model
+artifacts/Model.joblib
+artifacts/Preprocessor.joblib

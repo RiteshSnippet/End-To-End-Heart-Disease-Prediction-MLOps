@@ -1,7 +1,7 @@
-from heart_disease.components.data_ingestion import DataIngestion
-from heart_disease.components.data_transformation import DataTransformation
-from heart_disease.components.model_trainer import ModelTrainer
-from heart_disease.components.model_evaluation import ModelEvaluation
+from src.heart_disease.components.data_ingestion import DataIngestion
+from src.heart_disease.components.data_transformation import DataTransformation
+from src.heart_disease.components.model_trainer import ModelTrainer
+from src.heart_disease.components.model_evaluation import ModelEvaluation
 
 
 def run_training_pipeline():

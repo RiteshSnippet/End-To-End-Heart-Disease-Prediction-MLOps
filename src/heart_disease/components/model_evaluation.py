@@ -168,7 +168,7 @@ class ModelEvaluation:
 
                     mlflow.sklearn.log_model(
                         model,
-                        artifact_path="Model",
+                        name="Model",
                         registered_model_name=best_model_name
                     )
 
@@ -176,7 +176,7 @@ class ModelEvaluation:
 
                     mlflow.sklearn.log_model(
                         model,
-                        artifact_path="Model"
+                        name="Model"
                     )
 
                 logging.info("Model and metrics logged to MLflow successfully")
