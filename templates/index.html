@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Heart Disease Prediction</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+</head>
+
+
+<body>
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <nav class="navbar">
+
+        <div class="nav-container">
+
+            <div class="logo">
+
+                <div class="logo-icon">
+                    ♥
+                </div>
+
+                <div>
+                    <span class="logo-title">
+                        HeartPredict
+                    </span>
+
+                    <span class="logo-subtitle">
+                        ML Powered
+                    </span>
+                </div>
+
+            </div>
+
+            <div class="nav-badge">
+                Machine Learning
+            </div>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =========================
+         MAIN
+    ========================== -->
+
+    <main class="main-container">
+
+
+        <!-- HERO -->
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <div class="hero-badge">
+                    <span class="pulse-dot"></span>
+                    AI-Powered Prediction
+                </div>
+
+                <h1>
+                    Heart Disease
+                    <span>Prediction</span>
+                </h1>
+
+                <p>
+                    Enter the patient's health information below
+                    and let our machine learning model generate
+                    a prediction.
+                </p>
+
+            </div>
+
+            <div class="hero-heart">
+                ♥
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             PREDICTION FORM
+        ========================== -->
+
+        <section class="card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2>
+                        Patient Information
+                    </h2>
+
+                    <p>
+                        Please provide all 13 required features.
+                    </p>
+
+                </div>
+
+                <div class="required-badge">
+                    13 Features
+                </div>
+
+            </div>
+
+
+            <form method="POST" action="/" class="prediction-form">
+
+
+                <!-- AGE -->
+
+                <div class="form-group">
+
+                    <label for="age">
+                        Age
+                        <span>*</span>
+                    </label>
+
+                    <input type="number" id="age" name="age" placeholder="e.g. 52" min="1" max="120" required>
+
+                    <small>
+                        Patient age in years
+                    </small>
+
+                </div>
+
+
+                <!-- SEX -->
+
+                <div class="form-group">
+
+                    <label for="sex">
+                        Sex
+                        <span>*</span>
+                    </label>
+
+                    <select id="sex" name="sex" required>
+
+                        <option value="" disabled selected>
+                            Select sex
+                        </option>
+
+                        <option value="1">
+                            Male (1)
+                        </option>
+
+                        <option value="0">
+                            Female (0)
+                        </option>
+
+                    </select>
+
+                    <small>
+                        Dataset encoding: 1 = Male, 0 = Female
+                    </small>
+
+                </div>
+
+
+                <!-- CHEST PAIN -->
+
+                <div class="form-group">
+
+                    <label for="cp">
+                        Chest Pain Type
+                        <span>*</span>
+                    </label>
+
+                    <select id="cp" name="cp" required>
+
+                        <option value="" disabled selected>
+                            Select chest pain type
+                        </option>
+
+                        <option value="0">
+                            0 — Typical Angina
+                        </option>
+
+                        <option value="1">
+                            1 — Atypical Angina
+                        </option>
+
+                        <option value="2">
+                            2 — Non-anginal Pain
+                        </option>
+
+                        <option value="3">
+                            3 — Asymptomatic
+                        </option>
+
+                    </select>
+
+                    <small>
+                        Dataset encoding: 0–3
+                    </small>
+
+                </div>
+
+
+                <!-- RESTING BLOOD PRESSURE -->
+
+                <div class="form-group">
+
+                    <label for="trestbps">
+                        Resting Blood Pressure
+                        <span>*</span>
+                    </label>
+
+                    <input type="number" id="trestbps" name="trestbps" placeholder="e.g. 130" min="50" max="250"
+                        required>
+
+                    <small>
+                        Resting blood pressure (mm Hg)
+                    </small>
+
+                </div>
+
+
+                <!-- CHOLESTEROL -->
+
+                <div class="form-group">
+
+                    <label for="chol">
+                        Cholesterol
+                        <span>*</span>
+                    </label>
+
+                    <input type="number" id="chol" name="chol" placeholder="e.g. 240" min="50" max="700" required>
+
+                    <small>
+                        Serum cholesterol (mg/dl)
+                    </small>
+
+                </div>
+
+
+                <!-- FASTING BLOOD SUGAR -->
+
+                <div class="form-group">
+
+                    <label for="fbs">
+                        Fasting Blood Sugar
+                        <span>*</span>
+                    </label>
+
+                    <select id="fbs" name="fbs" required>
+
+                        <option value="" disabled selected>
+                            Select value
+                        </option>
+
+                        <option value="0">
+                            0 — ≤ 120 mg/dl
+                        </option>
+
+                        <option value="1">
+                            1 — &gt; 120 mg/dl
+                        </option>
+
+                    </select>
+
+                    <small>
+                        Dataset encoding: 0 or 1
+                    </small>
+
+                </div>
+
+
+                <!-- REST ECG -->
+
+                <div class="form-group">
+
+                    <label for="restecg">
+                        Resting ECG
+                        <span>*</span>
+                    </label>
+
+                    <select id="restecg" name="restecg" required>
+
+                        <option value="" disabled selected>
+                            Select ECG result
+                        </option>
+
+                        <option value="0">
+                            0 — Normal
+                        </option>
+
+                        <option value="1">
+                            1 — ST-T Wave Abnormality
+                        </option>
+
+                        <option value="2">
+                            2 — Left Ventricular Hypertrophy
+                        </option>
+
+                    </select>
+
+                    <small>
+                        Dataset encoding: 0–2
+                    </small>
+
+                </div>
+
+
+                <!-- MAX HEART RATE -->
+
+                <div class="form-group">
+
+                    <label for="thalach">
+                        Maximum Heart Rate
+                        <span>*</span>
+                    </label>
+
+                    <input type="number" id="thalach" name="thalach" placeholder="e.g. 150" min="50" max="250" required>
+
+                    <small>
+                        Maximum heart rate achieved
+                    </small>
+
+                </div>
+
+
+                <!-- EXERCISE ANGINA -->
+
+                <div class="form-group">
+
+                    <label for="exang">
+                        Exercise-Induced Angina
+                        <span>*</span>
+                    </label>
+
+                    <select id="exang" name="exang" required>
+
+                        <option value="" disabled selected>
+                            Select value
+                        </option>
+
+                        <option value="0">
+                            0 — No
+                        </option>
+
+                        <option value="1">
+                            1 — Yes
+                        </option>
+
+                    </select>
+
+                    <small>
+                        Dataset encoding: 0 = No, 1 = Yes
+                    </small>
+
+                </div>
+
+
+                <!-- OLDPEAK -->
+
+                <div class="form-group">
+
+                    <label for="oldpeak">
+                        ST Depression (Oldpeak)
+                        <span>*</span>
+                    </label>
+
+                    <input type="number" id="oldpeak" name="oldpeak" placeholder="e.g. 1.0" min="0" max="10" step="0.1"
+                        required>
+
+                    <small>
+                        ST depression induced by exercise
+                    </small>
+
+                </div>
+
+
+                <!-- SLOPE -->
+
+                <div class="form-group">
+
+                    <label for="slope">
+                        ST Segment Slope
+                        <span>*</span>
+                    </label>
+
+                    <select id="slope" name="slope" required>
+
+                        <option value="" disabled selected>
+                            Select slope
+                        </option>
+
+                        <option value="0">
+                            0 — Upsloping
+                        </option>
+
+                        <option value="1">
+                            1 — Flat
+                        </option>
+
+                        <option value="2">
+                            2 — Downsloping
+                        </option>
+
+                    </select>
+
+                    <small>
+                        Dataset encoding: 0–2
+                    </small>
+
+                </div>
+
+
+                <!-- CA -->
+
+                <div class="form-group">
+
+                    <label for="ca">
+                        Number of Major Vessels
+                        <span>*</span>
+                    </label>
+
+                    <select id="ca" name="ca" required>
+
+                        <option value="" disabled selected>
+                            Select number
+                        </option>
+
+                        <option value="0">
+                            0
+                        </option>
+
+                        <option value="1">
+                            1
+                        </option>
+
+                        <option value="2">
+                            2
+                        </option>
+
+                        <option value="3">
+                            3
+                        </option>
+
+                    </select>
+
+                    <small>
+                        Number of major vessels (0–3)
+                    </small>
+
+                </div>
+
+
+                <!-- THAL -->
+
+                <div class="form-group">
+
+                    <label for="thal">
+                        Thalassemia
+                        <span>*</span>
+                    </label>
+
+                    <select id="thal" name="thal" required>
+
+                        <option value="" disabled selected>
+                            Select value
+                        </option>
+
+                        <option value="0">
+                            0
+                        </option>
+
+                        <option value="1">
+                            1
+                        </option>
+
+                        <option value="2">
+                            2
+                        </option>
+
+                        <option value="3">
+                            3
+                        </option>
+
+                    </select>
+
+                    <small>
+                        Dataset encoding: 0–3
+                    </small>
+
+                </div>
+
+
+                <!-- SUBMIT -->
+
+                <div class="form-submit">
+
+                    <button type="submit" class="predict-button">
+
+                        <span>
+                            Predict Heart Disease
+                        </span>
+
+                        <span class="button-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+
+
+        <!-- =========================
+             RESULT
+        ========================== -->
+
+        {% if result_title %}
+
+        <section class="result-card {{ result_class }}">
+
+            <div class="result-icon">
+
+                {% if prediction == 1 %}
+                ⚠
+                {% else %}
+                ✓
+                {% endif %}
+
+            </div>
+
+
+            <div class="result-content">
+
+                <span class="result-label">
+                    MODEL PREDICTION
+                </span>
+
+                <h2>
+                    {{ result_title }}
+                </h2>
+
+                <p>
+                    {{ result_message }}
+                </p>
+
+
+                {% if probability is not none %}
+
+                <div class="probability-container">
+
+                    <div class="probability-header">
+
+                        <span>
+                            Model Probability
+                        </span>
+
+                        <strong>
+                            {{ probability }}%
+                        </strong>
+
+                    </div>
+
+
+                    <div class="probability-bar">
+
+                        <div class="probability-fill" data-probability="{{ probability }}"></div>
+
+                    </div>
+
+                </div>
+
+                {% endif %}
+
+
+                <div class="result-disclaimer">
+
+                    <strong>Important:</strong>
+
+                    This application is an educational
+                    machine-learning project. The prediction
+                    is not a medical diagnosis and should not
+                    be used as a substitute for advice from a
+                    qualified healthcare professional.
+
+                </div>
+
+            </div>
+
+        </section>
+
+        {% endif %}
+
+
+
+        <!-- =========================
+             INFORMATION
+        ========================== -->
+
+        <section class="info-section">
+
+            <div class="info-card">
+
+                <div class="info-icon">
+                    ⚙
+                </div>
+
+                <div>
+
+                    <h3>
+                        Machine Learning Model
+                    </h3>
+
+                    <p>
+                        This application uses a trained
+                        Support Vector Machine model with
+                        standardized input features.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="info-card">
+
+                <div class="info-icon">
+                    ⚡
+                </div>
+
+                <div>
+
+                    <h3>
+                        Instant Prediction
+                    </h3>
+
+                    <p>
+                        Your input is processed through the
+                        same preprocessing pipeline used during
+                        model training.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <p>
+            HeartPredict · Machine Learning Project
+        </p>
+
+        <p class="footer-note">
+            Built for educational purposes
+        </p>
+
+    </footer>
+
+
+    <script>
+        const probabilityFill =
+            document.querySelector(".probability-fill");
+
+        if (probabilityFill) {
+
+            const probability =
+                probabilityFill.dataset.probability;
+
+            probabilityFill.style.width =
+                `${probability}%`;
+        }
+    </script>
+</body>
+
+</html>
