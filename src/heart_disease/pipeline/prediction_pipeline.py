@@ -1,9 +1,9 @@
 import os
 import sys
 import pandas as pd
-from heart_disease.logger import logging
-from heart_disease.utils.utils import load_object
-from heart_disease.exception import CustomException
+from src.heart_disease.logger import logging
+from src.heart_disease.utils.utils import load_object
+from src.heart_disease.exception import CustomException
 
 
 class PredictPipeline:
@@ -25,8 +25,12 @@ class PredictPipeline:
 
             logging.info("Preprocessor and model loaded successfully")
 
-            transformed_data = (preprocessor.transform(features))
-
+            transformed_data = preprocessor.transform(features)
+            transformed_data = pd.DataFrame(
+                transformed_data,
+                columns=features.columns,
+                index=features.index
+            )
             logging.info("Input features transformed successfully")
 
             prediction = model.predict(transformed_data)
