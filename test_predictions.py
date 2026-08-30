@@ -3,7 +3,7 @@ from src.heart_disease.pipeline.prediction_pipeline import PredictPipeline, Cust
 
 df = pd.read_csv("notebooks/Data/heart.csv")
 
-sample = df.head(10)
+sample = df.sample(10)
 
 pipeline = PredictPipeline()
 
