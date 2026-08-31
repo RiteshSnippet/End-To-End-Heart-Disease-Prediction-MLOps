@@ -36,12 +36,12 @@ jobs:
 
       - name: Run Pytest
         run: |
-          pytest
+          PYTHONPATH=. pytest
 
 
       - name: Validate Flask Application
         run: |
-          python -c "from app import app; print('Flask application loaded successfully')"
+          PYTHONPATH=. python -c "from app import app; print('Flask application loaded successfully')"
 
 
   deploy:
